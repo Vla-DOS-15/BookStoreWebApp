@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookstoreWebApp.Models
+namespace BookStoreWebApp.Models
 {
-    public class Purchase
+    public class Order
     {
-        public int PurchaseId { get; set; }
+        public int OrderId { get; set; }
         public string FIO { get; set; }
         public DateTime DateTime { get; set; }
         public string Email { get; set; }

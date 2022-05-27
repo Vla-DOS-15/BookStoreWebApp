@@ -1,4 +1,4 @@
-﻿using BookstoreWebApp.Models;
+﻿using BookStoreWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace BookstoreWebApp.Controllers
+namespace BookStoreWebApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -47,7 +47,7 @@ namespace BookstoreWebApp.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public ActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
@@ -59,12 +59,12 @@ namespace BookstoreWebApp.Controllers
             return View();
         }
         [HttpPost]
-        public string Buy(Purchase purchase)
+        public string Buy(Order order)
         {
-            dbContext.Purchases.Add(purchase);
+            dbContext.Orders.Add(order);
             // сохраняем в бд все изменения
             dbContext.SaveChanges();
-            return "Дякуюємо, " + purchase.FIO + ", за купівлю!";
+            return "Дякуюємо, " + order.FIO + ", за купівлю!";
         }
     }
 }

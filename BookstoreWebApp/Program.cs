@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BookstoreWebApp.Models;
+using BookStoreWebApp.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookstoreWebApp

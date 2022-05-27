@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace BookstoreWebApp.Models
+namespace BookStoreWebApp.Models
 {
     public static class SampleData
     {
@@ -15,21 +15,24 @@ namespace BookstoreWebApp.Models
                         Name = "Колобок",
                         Author = "Народна творчість",
                         YearCreated = 1930,
-                        Price = 100
+                        Price = 100,
+                        Img = ""
                     },
                     new Book
                     {
                         Name = "Ромео і Джульєта",
                         Author = "Вільям Шекспір",
                         YearCreated = 1527,
-                        Price = 400
+                        Price = 400,
+                        Img = ""
                     },
                     new Book
                     {
                         Name = "Червона таблетка",
                         Author = "Курпатов Андрій",
                         YearCreated = 2019,
-                        Price = 350
+                        Price = 350,
+                        Img = ""
                     }
                 );
                 context.SaveChanges();

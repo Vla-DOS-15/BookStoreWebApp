@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 //using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-using BookstoreWebApp.Models;
+using BookStoreWebApp.Models;
 namespace BookstoreWebApp
 {
     public class Startup
