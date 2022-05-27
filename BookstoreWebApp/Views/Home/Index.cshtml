@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BookstoreWebApp.Models.Book>
+@{
+    ViewData["Title"] = "Каталог товарів";
+}
+style="
+.product{color: red; border-style: groove;"}"
+<h3>Товари інтернет магазину BookStore</h3>
+<br />
+
+<table>
+    <thead> 
+        <tr style="border: 2px;">
+            <td class="product">Назва</td>
+            <td>Автор</td>
+            <td>Рік написання</td>
+            <td>Ціна</td>
+            <td>&nbsp;</td>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var book in ViewBag.Books)
+            {
+                <tr>
+                    <td>@book.Name</td>
+                    <td>@book.Author</td>
+                    <td>@book.YearCreated</td>
+                    <td>@book.Price</td>
+                    <td><a href="~/Home/Buy/@book.Id">Купити</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+@*@{
+    ViewData["Title"] = "Home Page";
+    }
+
+    <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@

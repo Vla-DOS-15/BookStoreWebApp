@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Оформление заказа";
+}
+ 
+<h3>Форма оформлення покупки</h3>
+<p>Для оформлення покупки заповніть наступні поля:</p>
+<form method="post">
+    <input type="hidden" value="@ViewBag.BookId" name="BookId" />
+    <table>
+        <tr>
+            <td>Ім'я':</td>
+            <td><input type="text" name="FIO" /> </td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Адреса:</td>
+            <td><input type="text" name="Address" /></td>
+        </tr>
+        <tr>
+            <td>Електрона пошта:</td>
+            <td><input type="email" name="Email" /></td>
+        </tr>
+        <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+    </table>
+</form>
+
