@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BookStoreWebApp.Models
 {
     public class Book
@@ -7,9 +9,10 @@ namespace BookStoreWebApp.Models
         public string Name { get; set; }
         public string Author { get; set; }
         public int YearCreated { get; set; }
-        public string Genre { get; set; }
-        public decimal Price { get; set; }
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
+        public ushort Price { get; set; }
         public string Img { get; set; }
-        //public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

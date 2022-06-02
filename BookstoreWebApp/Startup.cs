@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using BookStoreWebApp.Models;
+using BookStoreWebApp.Interfaces;
+using BookStoreWebApp.Repository;
+using Microsoft.AspNetCore.Http;
+
 namespace BookstoreWebApp
 {
     public class Startup
@@ -47,6 +51,15 @@ namespace BookstoreWebApp
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+            services.AddMvc();
+            services.AddTransient<IAllBooks, BookRepository>();
+            services.AddTransient<IBookCategory, CategoryRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShopCart.GetCart(sp));
+            services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
+
             //services.AddControllersWithViews();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,9 +78,9 @@ namespace BookstoreWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSession();
-
+            app.UseStaticFiles();
+            //app.UseMvcWithDefaultRoute();
             app.UseRouting();
-
             app.UseAuthorization();
             //app.UseMvc(routes =>
             //{
