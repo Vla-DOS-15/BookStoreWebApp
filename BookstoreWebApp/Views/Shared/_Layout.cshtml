@@ -13,7 +13,7 @@
         <link href="~/css/style.css" rel="stylesheet" type="style.css"/>
     </head>
     <body>
-@{
+@*@{
     var data = Context.Session.GetString("cart");
 
     int coutCart = 0;
@@ -29,64 +29,55 @@
         {
             coutCart += item.Quantity;
         }
-
     }
+}*@
 
-}
-        <!--меню-->
-@*        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li><a href="~/Home/Index" class="navbar-brand">Головна</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>*@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Carousel</a>
+            <a class="navbar-brand" href="/">BookStore</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Головна</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" href="/ShopCart/" 
+                style="padding:10px;">Кошик 
+                <img src="https://i.pinimg.com/originals/4b/a7/d8/4ba7d8d3c62e961494a50de2f61b2cc8.jpg" style="width:25px !important;height:25px;display:inline-block;"/></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                    <li>
+                        <select class="form-select" aria-label="Виберіть елемент:">
+                            <option selected>...</option>
+                            <option value="1">Один</option>
+                            <option value="2">Два</option>
+                            <option value="3">Три</option>
+                        </select>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Пошук</button>
                 </form>
             </div>
         </div>
     </nav>
-
-        <!--основний контент-->
+@*@using (Html.BeginForm())
+{
+    @Html.ListBox("countries", 
+            new MultiSelectList(new string[] { "США", "Китай", "Индия" }))
+    <p><input type="submit" value="Отправить" /></p>
+}*@
         <div class="container mt-5">
-            <br />
-
-            <a asp-area=""
-                asp-controller="Home"
-                asp-action="ListCart" 
-                style="background:#000;padding:10px;">Cart 
-                <img src="https://i.pinimg.com/originals/4b/a7/d8/4ba7d8d3c62e961494a50de2f61b2cc8.jpg" style="width:25px !important;height:25px;display:inline-block;" />
-                @coutCart
-             </a>
-
             <br />
             @RenderBody()
             <hr />
             <footer class="container">
                 <p class="float-end"><a href="#">Back to top</a></p>
-                <p>© 2022 - BookStore<a href="#">Privacy</a> · <a href="#">Terms</a></p>
+                <p style="text-align: center;">© 2022 - BookStore</p>
             </footer>
         </div>
 

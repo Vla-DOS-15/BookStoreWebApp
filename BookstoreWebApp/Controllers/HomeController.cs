@@ -10,15 +10,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using BookStoreWebApp.Interfaces;
 
 namespace BookStoreWebApp.Controllers
 {
     public class HomeController : Controller
     {
         BookContext dbContext;
-        public HomeController(BookContext context)
+        //private IAllBooks allBooks;
+        public HomeController(BookContext dbContext)
         {
-            dbContext = context;
+            this.dbContext = dbContext;
         }
         //public IActionResult Index()
         //{
@@ -182,7 +184,7 @@ namespace BookStoreWebApp.Controllers
         {
             if (order.FIO != null || order.Address != null || order.Email != null)
             {
-                order.DateTime = DateTime.Now;
+                order.OrderTime = DateTime.Now;
                 dbContext.Orders.Add(order);
                 // сохраняем в бд все изменения
                 dbContext.SaveChanges();

@@ -1,0 +1,15 @@
+﻿@model ShopCartViewModel
+@{
+    ViewData["Title"] = "Кошик";
+}
+<div class="container">
+    @foreach(var el in Model.shopCart.ListShopItems)
+    {
+        <div>
+            <b>Книга:</b> @el.Book.Name<br/>
+            <b>Книга:</b> @el.Book.Price.ToString() + " грн"<br/>
+        </div>
+    }
+    <hr/>
+    <div class="btn btn-danger" asp-controller="Order">Оплатити</div>
+</div>
