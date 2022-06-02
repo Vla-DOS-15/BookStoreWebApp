@@ -7,8 +7,9 @@ namespace BookStoreWebApp.Models
         public string Name { get; set; }
         public string Author { get; set; }
         public int YearCreated { get; set; }
+        public string Genre { get; set; }
         public decimal Price { get; set; }
-        public string? Img { get; set; }
+        public string Img { get; set; }
         //public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

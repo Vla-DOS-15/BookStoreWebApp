@@ -35,6 +35,7 @@ namespace BookstoreWebApp
         //    //services.AddDbContext<BookContext>(options =>
         //      //  options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
         //}
+
         public void ConfigureServices(IServiceCollection services)
         {
             // получаем строку подключения из файла конфигурации
@@ -43,6 +44,9 @@ namespace BookstoreWebApp
             services.AddDbContext<BookContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BookContext")));
                 services.AddControllersWithViews();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
             //services.AddControllersWithViews();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,17 +64,25 @@ namespace BookstoreWebApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Book}/{action=Index}/{id?}");
+            //});
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
+
         }
     }
 }

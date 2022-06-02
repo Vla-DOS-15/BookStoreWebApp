@@ -1,39 +1,109 @@
 ﻿@model IEnumerable<BookStoreWebApp.Models.Book>
 @{
     ViewData["Title"] = "Каталог товарів";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
+<style>
+    .list-product {
+        width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .product {
+        margin-top: 10px;
+        margin-right: 10px;
+        width: 120px;
+        height: 200px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: auto;
+    }
+
+    .title {
+        display: block;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .viewProduct, .addProduct {
+        width: calc((100% - 2px) / 2);
+        display: inline-block;
+        float: left;
+        padding: 2px;
+        font-size: 12px;
+        box-sizing: border-box;
+        color: #fff;
+        background: #808080;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .addProduct {
+        margin-left: 2px;
+    }
+</style>
+
+<div class="list-product">
+    @foreach (var item in ViewBag.Books)
+    {
+    <div class="product">
+        <img src="~/images/@item.Img" class="img-responsive" />
+        <span class="title">@item.Name</span>
+        <a href="" class="viewProduct">View</a>
+        <a asp-controller="Book" asp-action="addCart" asp-route-id="@item.Id" class="addProduct">Add order</a>
+    </div>
+    }
+
+
+</div>
 
 <h3>Товари інтернет магазину BookStore</h3>
 <br />
 
-<table>
-    <thead> 
-        <tr style="border: 2px;">
-            <td class="product">Назва</td>
-            <td>Автор</td>
-            <td>Рік написання</td>
-            <td>Ціна</td>
-            <td>Фото</td>
-            <td>&nbsp;</td>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var book in ViewBag.Books)
-            {
-                <tr>
-                    <td>@book.Name</td>
-                    <td>@book.Author</td>
-                    <td>@book.YearCreated</td>
-                    <td>@book.Price</td>
-                    <td>@book.Img</td>
-                    <td><a href="~/Home/Buy/@book.Id">Купити</a></td>
-                </tr>
-            }
+<div class="row mt-6 mb-2">
+    @{
+        foreach (var book in ViewBag.Books)
+        {
+            <div class="col-lg-4">
+                <img class="img-thumbnail" src="@book.Img" alt="@book.Name" width=100 height=100/>
+                <h2>@book.Name</h2>
+                <p>@book.Author</p>
+                <p>@book.YearCreated</p>
+                <p>@book.Price грн</p>
+                <a class="btn btn-outline-secondary btn-lg">Детальніше</a>
+                <a class="btn btn-success btn-lg" href="~/Home/Buy/@book.Id">Купити</a>
+            </div>
         }
-    </tbody>
-</table>
+    }
+    </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src=
+    "https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity=
+    "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity=
+    "sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+        <script src=
+    "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity=
+    "sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
 
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"                            crossorigin="anonymous">
+            </script>
 
 @*@{
     ViewData["Title"] = "Home Page";
