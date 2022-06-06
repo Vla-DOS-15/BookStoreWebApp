@@ -1,8 +1,28 @@
 ﻿@model Order
-
 <div class="row">
     <h3>Оформлення замоввлення</h3>
-    <form>
-
+    <form asp-action="Checkout" method="pos" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="FIO"></label>
+            <div class="col-md-5">
+                <input asp-for="FIO" class="form-control"/>
+                <span asp-validation-for="FIO" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address"></label>
+            <div class="col-md-5">
+                <input asp-for="Address" class="form-control"/>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <div class="col-md-5">
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit" value="Завершити замовлення"/>
     </form>
 </div>

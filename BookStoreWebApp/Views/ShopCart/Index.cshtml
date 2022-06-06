@@ -2,14 +2,14 @@
 @{
     ViewData["Title"] = "Кошик";
 }
-<div class="container">
+<div class="container mt-5">
     @foreach(var el in Model.shopCart.ListShopItems)
     {
-        <div>
+        <div class="alteralter-warning mt-3">
             <b>Книга:</b> @el.Book.Name<br/>
-            <b>Книга:</b> @el.Book.Price.ToString() + " грн"<br/>
+            <b>Ціна:</b> @el.Book.Price.ToString("c")
         </div>
     }
     <hr/>
-    <div class="btn btn-danger" asp-controller="Order">Оплатити</div>
+    <a class="btn btn-danger mb-5" asp-controller="Order" asp-action="Checkout">Оплатити</a>
 </div>

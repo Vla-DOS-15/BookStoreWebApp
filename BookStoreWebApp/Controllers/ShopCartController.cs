@@ -22,13 +22,12 @@ namespace BookStoreWebApp.Controllers
             var items = shopCart.GetShopCartItems();
             shopCart.ListShopItems = items;
             var obj = new ShopCartViewModel { shopCart = shopCart };
-
             return View(obj);
         }
         public RedirectToActionResult AddToCart(int id)
         {
             var item = bookRepository.Books.FirstOrDefault(i => i.Id == id);
-            if (item == null)
+            if (item != null)
                 shopCart.AddToCart(item);
             return RedirectToAction("Index");
         }

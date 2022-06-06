@@ -17,5 +17,27 @@ namespace BookStoreWebApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Checkout(Order order)
+        {
+            shopCart.ListShopItems = shopCart.GetShopCartItems();
+            if(shopCart.ListShopItems.Count == 0)
+            {
+                ModelState.AddModelError("", "В кошику повинні бути товари!");
+            }
+            if (ModelState.IsValid)
+            {
+                allOrders.CreateOrder(order);
+                return RedirectToAction("Complete");
+            }
+            return View(order);
+        }
+
+        public IActionResult Complete()
+        {
+            ViewBag.Messege = "Замовлення успішно оброблено!";
+            return View();
+        }
     }
 }

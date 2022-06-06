@@ -42,9 +42,6 @@ namespace BookstoreWebApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // получаем строку подключения из файла конфигурации
-            //string connection = Configuration.GetConnectionString("BookContext");
-            // добавляем контекст ApplicationContext в качестве сервиса в приложение
             services.AddDbContext<BookContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BookContext")));
                 services.AddControllersWithViews();
@@ -54,6 +51,7 @@ namespace BookstoreWebApp
             services.AddMvc();
             services.AddTransient<IAllBooks, BookRepository>();
             services.AddTransient<IBookCategory, CategoryRepository>();
+            services.AddTransient<IAllOrders, OrdersRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
             services.AddMvc();

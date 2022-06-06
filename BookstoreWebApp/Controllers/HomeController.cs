@@ -33,14 +33,10 @@ namespace BookStoreWebApp.Controllers
             //_logger = logger;
         //}
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            //var _book = dbContext.Books;
-            //ViewBag.book = _book;
-            //return View();
             IEnumerable<Book> books = dbContext.Books;
             ViewBag.Books = books;
-
             return View();
         }
 

@@ -15,7 +15,7 @@ namespace BookStoreWebApp.Models
             this.bookContext = bookContext;
         }
         [System.ComponentModel.DataAnnotations.Key]
-        public string shopCartId { get; set; }
+        public string ShopCartId { get; set; }
         public List<ShopCartItem> ListShopItems { get; set; }
         public static ShopCart GetCart(IServiceProvider services)
         {
@@ -23,19 +23,21 @@ namespace BookStoreWebApp.Models
             var context = services.GetService<BookContext>();
             string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", shopCartId);
-            return new ShopCart(context){ shopCartId = shopCartId };
+            return new ShopCart(context){ ShopCartId = shopCartId };
         }
 
         public void AddToCart(Book book)
         {
             bookContext.ShopCartItems.Add(new ShopCartItem { 
-                ShopCartId = shopCartId, 
-                Book = book });
+                ShopCartId = ShopCartId,
+                Book = book,
+                Price = book.Price
+            });
             bookContext.SaveChanges();
         }
         public List<ShopCartItem> GetShopCartItems()
         {
-            return bookContext.ShopCartItems.Where(w => w.ShopCartId == shopCartId).Include(i => i.Book).ToList();
+            return bookContext.ShopCartItems.Where(w => w.ShopCartId == ShopCartId).Include(i => i.Book).ToList();
         }
     }
 }

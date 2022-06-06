@@ -77,6 +77,7 @@ namespace BookStoreWebApp.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
         public IActionResult ListCart()
         {
             var cart = HttpContext.Session.GetString("cart");//get key cart

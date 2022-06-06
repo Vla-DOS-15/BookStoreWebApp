@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-//using System.Data.Entity;
 
 namespace BookStoreWebApp.Models
 {
@@ -14,9 +13,8 @@ namespace BookStoreWebApp.Models
         public BookContext(DbContextOptions<BookContext> options)
             : base(options)
         {
-            //Database.EnsureDeleted();
-            Database.EnsureCreated();   // создаем базу данных при первом обращении
+           // Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
-
     }
 }
